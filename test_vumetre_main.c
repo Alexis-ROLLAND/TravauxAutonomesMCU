@@ -59,3 +59,50 @@ while(1)
     }
 }					
 #endif  /* TEST_PILOTER_LEDS */
+
+#ifdef  TEST_GENE_TIC
+int main(void)
+{
+    // Variables locales au main
+    
+
+
+    Initialiser();		// Appel fonction d'initialisation
+
+    while(1){
+    
+    }
+}					
+#endif  /* TEST_GENE_TIC    */
+
+#ifdef  TEST_ACQ_VPOT
+int main(void){
+    // Variables locales au main
+    
+    Initialiser();		// Appel fonction d'initialisation
+
+    while(1){
+        __delay_ms(100);        // Wait 100ms
+        StartConversion();
+    
+    }
+}
+#endif  /*  TEST_ACQ_VPOT   */
+
+#ifdef  TEST_TRANSCODER
+int main(void){
+    // Variables locales au main
+    uint16_t Tension = 0;
+    
+    Initialiser();		// Appel fonction d'initialisation
+
+    while(1){
+        __delay_ms(100);        // Wait 100ms
+        PiloterLEDs(Transcoder(Tension));
+        if (Tension <= (1013))   Tension += 10;
+        else Tension = 0;
+        
+    }      
+}
+
+#endif  /*  TEST_TRANSCODER */
