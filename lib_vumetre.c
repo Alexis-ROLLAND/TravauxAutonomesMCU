@@ -15,22 +15,15 @@
 
 /* Déclarations des variables globales 	*/
 const   uint8_t tabValLeds[9] = {0x00, 0x01, 0x03, 0x07, 0x0F, 0x1F, 0x3F, 0x7F, 0xFF}; 
+uint16_t    Vpot = 0;
+uint8_t     AcqOK = 0;
 
 /*	Implémentation du code */
-#ifdef  TEST_PILOTER_LEDS
-void Initialiser(void)
-{
+void Initialiser(void){
     TRIS_LEDS &= 0xFF00;    //  RA[7:0] as GPIO output
     PORT_LEDS = 0x00;       //  All LEDs off at startup
 
-}
-#endif  /*  TEST_PILOTER_LEDS   */
-
-#ifdef  TEST_GENE_TIC
-void Initialiser(void)
-{
-    TRISAbits.TRISA0 = 0;   //  RA0 as GPIO output (test purpose, usind LED D3)
-    
+    // Config Timer1
     T1CON = 0x0010;     //  T1CON = 0b0000 0000 0001 0000 - Timer mode, div by 8
     TMR1 = 0;           //  Set Timer1 count register to 0
     PR1 = NB_TIC_50MS;  //  Load PR1 with "50ms" value
@@ -38,25 +31,7 @@ void Initialiser(void)
     IFS0bits.T1IF = 0;  //  Reset T1 Interrupt Flag (security)
     IEC0bits.T1IE = 1;  //  Enable T1 interrupt
     IPC0bits.T1IP = 4;  //  Set T1 Interrupt priority to 4 (default)
-    
-    T1CONbits.TON = 1;  //  Start timer 1
-}
-
-void _ISR __attribute__((no_auto_psv)) _T1Interrupt (void)
-{
-    LATAbits.LATA0 = ~LATAbits.LATA0;   // Test : blink LED D3
-    IFS0bits.T1IF = 0;  // Clear T1IF
-}   /* _T1Interrupt */
-
-#endif  /* TEST_GENE_TIC    */
-
-#ifdef  TEST_ACQ_VPOT    
-uint16_t    Vpot;
-void Initialiser(void)
-{
-    TRIS_LEDS &= 0xFF00;    //  RA[7:0] as GPIO output
-    PORT_LEDS = 0x00;       //  All LEDs off at startup
-    
+       
     // Config ADC (step by step)
     AD1CON2bits.VCFG = 0b000;     //  Vr+ = AVDD, Vr- = AVSS
     AD1CON3bits.ADRC = 1;       //  Tad is issued from internal dedicated RC oscillator (Tad = 250ns)
@@ -76,30 +51,34 @@ void Initialiser(void)
     IPC3bits.AD1IP = 4; //  Interrupt priority = 4 (default)
         
     AD1CON1bits.ADON = 1;   // Power on ADC
+    T1CONbits.TON = 1;  //  Start timer 1    
 }
-
-void _ISR __attribute__((no_auto_psv)) _ADC1Interrupt (void)
-{
-    Vpot = (ADC1BUF0 >> 2);     // get 8 most significant bits of the result
-    PORT_LEDS = Vpot ;
-    
-    IFS0bits.AD1IF = 0; //  Clear IF 
-}   /* _ADC1Interrupt    */
-
-#endif  /*  TEST_ACQ_VPOT       */
-
-#ifdef  TEST_TRANSCODER
-void Initialiser(void){
-    TRIS_LEDS &= 0xFF00;    //  RA[7:0] as GPIO output
-    PORT_LEDS = 0x00;       //  All LEDs off at startup
+//-----------------------------------------------------------------------------
+void    main_task(void){
+    if (AcqOK){
+        PiloterLEDs(Transcoder(Vpot));
+        AcqOK = 0;
+    }
 }
-
-#endif  /*  TEST_TRANSCODER */
-
+//-----------------------------------------------------------------------------
 uint8_t Transcoder(uint16_t Tension){
     float   tmp;
     
     tmp = (float)Tension * (COEF_MISE_ECHELLE);
     return tabValLeds[(uint8_t)tmp];
 }
+//-----------------------------------------------------------------------------
+void _ISR __attribute__((no_auto_psv)) _T1Interrupt (void){
+    StartConversion();  // Obvious...
+    IFS0bits.T1IF = 0;  // Clear T1IF
+}   /* _T1Interrupt */
+//-----------------------------------------------------------------------------
+void _ISR __attribute__((no_auto_psv)) _ADC1Interrupt (void){
+    Vpot = (ADC1BUF0);     // get the result
+    AcqOK = 1;              // Set software Flag
+    IFS0bits.AD1IF = 0; //  Clear IF 
+}   /* _ADC1Interrupt    */
+//-----------------------------------------------------------------------------
+
+
 
