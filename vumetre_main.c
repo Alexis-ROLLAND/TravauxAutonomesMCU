@@ -42,16 +42,11 @@
 
 
 /* Programme Principal			*/
-int main(void)
-{
-    // Variables locales au main
-    
-
-
-    Initialiser();		// Appel fonction d'initialisation
+int main(void){
+	Initialiser();		// Appel fonction d'initialisation
 
     while(1){
-        main_task();
+        main_task();	// Appel tâche principale
     }
 }					
 

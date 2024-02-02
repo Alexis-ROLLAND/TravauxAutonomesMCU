@@ -57,7 +57,7 @@ void Initialiser(void){
 void    main_task(void){
     if (AcqOK){
         PiloterLEDs(Transcoder(Vpot));
-        AcqOK = 0;
+        clearAcqOK();
     }
 }
 //-----------------------------------------------------------------------------
@@ -74,9 +74,9 @@ void _ISR __attribute__((no_auto_psv)) _T1Interrupt (void){
 }   /* _T1Interrupt */
 //-----------------------------------------------------------------------------
 void _ISR __attribute__((no_auto_psv)) _ADC1Interrupt (void){
-    Vpot = (ADC1BUF0);     // get the result
-    AcqOK = 1;              // Set software Flag
-    IFS0bits.AD1IF = 0; //  Clear IF 
+    Vpot = (ADC1BUF0);          // get the result
+    setAcqOK();                 // Set software Flag
+    IFS0bits.AD1IF = 0;         //  Clear IF 
 }   /* _ADC1Interrupt    */
 //-----------------------------------------------------------------------------
 

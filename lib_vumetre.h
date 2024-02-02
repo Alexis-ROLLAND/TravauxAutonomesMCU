@@ -19,14 +19,16 @@
 #define PORT_LEDS   LATA
 #define TRIS_LEDS   TRISA
 
-#define PiloterLEDs(EtatLeds)   {PORT_LEDS = EtatLeds;}
-#define StartConversion()       {AD1CON1bits.SAMP = 0;}          // Start Conversion (force end of sample)
+#define PiloterLEDs(EtatLeds)   {PORT_LEDS = EtatLeds;}         
+#define StartConversion()       {AD1CON1bits.SAMP = 0;}             // Start Conversion (force end of sample)
+#define clearAcqOK()            {AcqOK = 0;}                        // Clear the software flag associated with AcqOK
+#define setAcqOK()              {AcqOK = 1;}                        // Set the software flag associated with AcqOK
 
 #define NB_TIC_50MS         25000
 #define COEF_MISE_ECHELLE   ((float)(0.0087))   // Reajusted value
 
 /**
- * @brief Global init function/task 
+ * @brief   Global init function/task 
  * 
  * @param	None
  * 
@@ -36,21 +38,21 @@
 void Initialiser(void);
 
 /**
- * @brief  
+ * @brief   Transcoding function betweeen LEDs value and read voltage
  * 
- * @param	
+ * @param[in]	Tension : Voltage image ouput of ADC. 10bits.
  * 
- * @return   
+ * @return   8 bits, values of the 8 LEDs
  *
  */
 uint8_t Transcoder(uint16_t Tension);
  
  /**
- * @brief  
+ * @brief  Main Task - loop
  * 
- * @param	
+ * @param       none
  * 
- * @return   
+ * @return      none
  *
  */
 void    main_task(void);
