@@ -20,10 +20,10 @@ uint8_t ledPattern = 0x01;  /**<    Startting pattern is 00000001   */
 /*	Implémentation du code */
 void Initialiser(void)
 {
-    TRISA &= 0xFF00;    // LEDs are connected to LATA[7:0]. Let's make then GPIO ouputs
-    LATA = 0;           //  All LEDs off at startup
+    TRISA &= 0xFF00;    /**< LEDs are connected to LATA[7:0]. Let's make then GPIO ouputs   */
+    LATA = 0;           /**<  All LEDs off at startup   */
 
-    T1CON = 0x0010;     /**< Timer Mode, Clocl is Fcy, Prediv by 8, timer is of  */
+    T1CON = 0x0010;     /**< Timer Mode, Clock is Fcy, Prediv by 8, timer is of  */
     PR2 = VAL_100MS;    /**< PR value to match 100ms    */
     
     TIMER1_IF = 0;      /**< Security   */
