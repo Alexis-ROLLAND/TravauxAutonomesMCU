@@ -35,8 +35,15 @@ void Initialiser(void){
     // Config ADC (step by step)
     AD1CON2bits.VCFG = 0b000;     //  Vr+ = AVDD, Vr- = AVSS
     AD1CON3bits.ADRC = 1;       //  Tad is issued from internal dedicated RC oscillator (Tad = 250ns)
+    /*
     AD1PCFGbits.PCFG5 = 0;      //  RB5/AN5 is an anlog input
     AD1CHSbits.CH0SA = 5;       //  MUX A input+ is AN5
+    */
+    
+    // Config pour projet DECEL (AN0)
+    AD1PCFGbits.PCFG0 = 0;      //  RB0/AN0 is an anlog input
+    AD1CHSbits.CH0SA = 0;       //  MUX A input+ is AN0
+    
     AD1CHSbits.CH0NA = 0;       //  MUX A input- is Vref-
     AD1CON2bits.ALTS = 0;       //  MUX A is the only used MUX
     AD1CON2bits.CSCNA = 0;      //  No scan
