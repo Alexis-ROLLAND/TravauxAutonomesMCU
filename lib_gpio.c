@@ -46,9 +46,11 @@ gpio_err_t  gpio_init(const gpio_pin_t *pin, gpio_mode_t mode){
     
     regAddr trisAddr = getTRIS(pin->port);
     
-    if (mode == GPIO_MODE_INPUT)        *trisAddr |= ((0x0001)<<(pin->bitNumber));
-    else if (mode == GPIO_MODE_OUTPUT)  *trisAddr &= ~((0x0001)<<(pin->bitNumber));
-    
+    switch(mode){
+        case GPIO_MODE_INPUT : *trisAddr |= ((0x0001)<<(pin->bitNumber));break;
+        case GPIO_MODE_OUTPUT : *trisAddr &= ~((0x0001)<<(pin->bitNumber));break;
+        default : return GPIO_MODE_ERROR;
+    }
     return GPIO_OK;
 }
 //-----------------------------------------------------------------------------

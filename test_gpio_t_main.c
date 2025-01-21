@@ -1,8 +1,8 @@
 /**
- * @file Template_Main_C.c 
+ * @file    test_gpio_t_amin.c 
  * @author 	Alexis ROLLAND
- * @date	2021-12-30
- * @brief 	Template for PIC24 main app
+ * @date	2025/01
+ * @brief 	
  *  
  *
  */

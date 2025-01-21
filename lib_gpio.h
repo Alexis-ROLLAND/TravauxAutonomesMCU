@@ -3,7 +3,6 @@
  * @author 	Alexis ROLLAND
  * @date	2024-02
  * @brief 	Header file for GPIO low-level driver 
- *  
  *
  */
 
@@ -11,15 +10,16 @@
 #define	__LIB_GPIO_H__
 #include <xc.h>
 
-#define FUNCTION_BASED   1
-#define MACRO_BASED      2
-#define IMPLEMENTATION_MODE FUNCTION_BASED
+#define     FUNCTION_BASED   1      /**< Do not change */
+#define     MACRO_BASED      2      /**< Do not change */
+#define IMPLEMENTATION_MODE FUNCTION_BASED  /**< Select implementation type for low-level functionnalities (Macro or function) */ 
 
 typedef uint16_t*    regAddr;       /**<    Alias to uint16_t*  */
 
 typedef enum {
-            GPIO_OK = 0,        /**<    All is OK   */
-            GPIO_ERROR = -1,    /**<    Unspecific error    */
+            GPIO_OK = 0,            /**<    All is OK   */
+            GPIO_ERROR = -1,        /**<    Unspecific error    */
+            GPIO_MODE_ERROR = -2,   /**<    provided mode is unsupported    */ 
 } gpio_err_t;
 
 typedef enum {
@@ -50,10 +50,10 @@ typedef struct{
 /**
  * @brief  Initializes the GPIO as input or output
  * 
- * @param[OUT]  pin : address of a filled gpio_pint_t struct	
- * @param[IN]   mode : GPIO mode (input/output)  
+ * @param[IN]   pin : address of a filled gpio_pint_t struct	
+ * @param       mode : GPIO mode (input/output)  
  * 
- * @return      GPIO_OK if ok, GPIO_ERROR otherwise 
+ * @return      GPIO_OK if ok, GPIO_MODE_ERROR otherwise 
  *
  */
 gpio_err_t  gpio_init(const gpio_pin_t *pin, gpio_mode_t mode);
