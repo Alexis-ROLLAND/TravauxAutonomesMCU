@@ -55,7 +55,7 @@ while(1)
 }					
 #endif  /* EXERCICE_1   */
 
-#ifdef EXERCICE_2
+#ifdef EXERCICE_2   
 int main(void)
 {
 // Variables locales au main
