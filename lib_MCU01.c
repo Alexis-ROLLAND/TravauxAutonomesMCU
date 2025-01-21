@@ -1,8 +1,8 @@
 /**
- * @file 
+ * @file    lib_MCU01.c
  * @author 	Alexis ROLLAND
- * @date	
- * @brief 	
+ * @date	2025/01
+ * @brief   
  *  
  *
  */

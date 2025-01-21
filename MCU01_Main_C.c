@@ -1,8 +1,8 @@
 /**
- * @file  
+ * @file    MCU01_Main_C.c
  * @author 	Alexis ROLLAND
- * @date	
- * @brief 	
+ * @date	2025/01
+ * @brief 	main file for MCU01
  *  
  *
  */

@@ -1,19 +1,19 @@
 /**
- * @file 
+ * @file    lib_MCU01.h
  * @author 	Alexis ROLLAND
- * @date	
- * @brief 	
+ * @date	2025/01
+ * @brief 	Header file for MCU01
  *  
  *
  */
 #ifndef	__LIB_APP_MCU01_H__
 #define	__LIB_APP_MCU01_H__
 
-//#define EXERCICE_1
-#define EXERCICE_2
-
+#define EXERCICE_1    
+//#define EXERCICE_2
+ 
 #ifndef FCY
-#define FCY 4000000UL
+#define FCY 4000000UL       /**< Primary osc is 8MHz -> Fcy is 4MHz  */
 #endif
 
 #include <libpic30.h>
