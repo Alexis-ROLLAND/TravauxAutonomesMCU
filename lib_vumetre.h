@@ -1,8 +1,8 @@
 /**
- * @file Template_lib_Appli_H.h 
+ * @file    lib_vumetre.h 
  * @author 	Alexis ROLLAND
- * @date	2021-12-30
- * @brief 	Template for PIC24 main app
+ * @date	2025/01
+ * @brief 	
  *  
  *
  */
@@ -40,9 +40,9 @@ void Initialiser(void);
 /**
  * @brief   Transcoding function betweeen LEDs value and read voltage
  * 
- * @param[in]	Tension : Voltage image ouput of ADC. 10bits.
+ * @param	uint126_t Tension : Voltage image ouput of ADC. 10bits.
  * 
- * @return   8 bits, values of the 8 LEDs
+ * @return   8 bits, values of the 8 LEDs (pattern)
  *
  */
 uint8_t Transcoder(uint16_t Tension);
