@@ -1,5 +1,5 @@
 /**
- * @file    
+ * @file    lib_MCU02.h
  * @author 	Alexis ROLLAND
  * @date	2024-02
  * @brief 	
@@ -27,11 +27,13 @@ typedef enum {  RESET = 0,          /**< RESET value for a soft_flag_t variable 
 #define setSoftFlag(x)  {x = SET;};         /**< Macro designed to set a software flag  */
 #define resetSoftFlag(x)  {x = RESET;};     /**< Macro designed to reset a software flag  */
 
-//  INT1 is chosen
-//  RE8 is INT1 pin
+/**  INT1 is chosen
+ * RE8 is INT1 pin
+ */
 #define     BP          PORTEbits.RE8
 #define     BP_TRIS     TRISEbits.TRISE8
-//  Macros to IF/IE/IP bits
+
+/**  Macros to IF/IE/IP bits    */
 #define     BP_IF       IFS1bits.INT1IF       
 #define     BP_IE       IEC1bits.INT1IE
 #define     BP_IP       IPC5bits.INT1IP
@@ -47,11 +49,11 @@ typedef enum {  RESET = 0,          /**< RESET value for a soft_flag_t variable 
 void Initialiser(void);
 
  /**
- * @brief  
+ * @brief   main app task 
  * 
- * @param	
+ * @param	none
  * 
- * @return   
+ * @return  nothing   
  *
  */
 void    main_task(void);

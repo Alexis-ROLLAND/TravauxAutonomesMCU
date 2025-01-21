@@ -1,5 +1,5 @@
 /**
- * @file    
+ * @file    MCU02_main.c
  * @author 	Alexis ROLLAND
  * @date	2024-02
  * @brief 	
