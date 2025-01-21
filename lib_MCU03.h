@@ -1,5 +1,5 @@
 /**
- * @file    
+ * @file    lib_MCU03.h
  * @author 	Alexis ROLLAND
  * @date	2024-02
  * @brief 	
@@ -42,11 +42,11 @@ typedef enum {  RESET = 0,          /**< RESET value for a soft_flag_t variable 
 void Initialiser(void);
 
  /**
- * @brief  
+ * @brief   main app task
  * 
- * @param	
+ * @param   none	
  * 
- * @return   
+ * @return  nothing 
  *
  */
 void    main_task(void);

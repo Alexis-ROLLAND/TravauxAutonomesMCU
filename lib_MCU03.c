@@ -1,5 +1,5 @@
 /**
- * @file    
+ * @file    lib_MCU03.c
  * @author 	Alexis ROLLAND
  * @date	2024-02
  * @brief 	
@@ -15,7 +15,7 @@
 
 /* Déclarations des variables globales 	*/
 soft_flag_t     evtTimer1 = RESET;      /**<   Software flag is RESET at startup    */
-uint8_t ledPattern = 0x01;  /**<    Startting pattern is 00000001   */
+uint8_t         ledPattern = 0x01;      /**<    Starting pattern is 00000001   */
 
 /*	Implémentation du code */
 void Initialiser(void)
