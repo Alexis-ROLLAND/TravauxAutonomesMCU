@@ -12,7 +12,7 @@
 
 #define     FUNCTION_BASED   1      /**< Do not change */
 #define     MACRO_BASED      2      /**< Do not change */
-#define IMPLEMENTATION_MODE FUNCTION_BASED  /**< Select implementation type for low-level functionnalities (Macro or function) */ 
+#define     IMPLEMENTATION_MODE FUNCTION_BASED  /**< Select implementation type for low-level functionnalities (Macro or function) */ 
 
 typedef uint16_t*    regAddr;       /**<    Alias to uint16_t*  */
 
