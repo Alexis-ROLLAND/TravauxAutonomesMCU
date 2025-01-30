@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>Vumetre</name>
-            <creation-uuid>904b6b6f-cc06-483d-965e-9947fa5f5622</creation-uuid>
+            <name>test_lib_gpio</name>
+            <creation-uuid>0949c6ac-78b3-455b-972b-a37fd8048bd0</creation-uuid>
             <make-project-type>0</make-project-type>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
