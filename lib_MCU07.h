@@ -1,13 +1,13 @@
 /**
- * @file Template_lib_Appli_H.h 
+ * @file    lib_MCU07.h 
  * @author 	Alexis ROLLAND
- * @date	2021-12-30
- * @brief 	Template for PIC24 main app
+ * @date	2025-03
+ * @brief 	
  *  
  *
  */
-#ifndef	__LIB_APP_H__
-#define	__LIB_APP_H__
+#ifndef	__LIB_MCU07_H__
+#define	__LIB_MCU07_H__
 
 #ifndef FCY
 #define FCY 4000000UL
@@ -15,6 +15,12 @@
 
 #include <libpic30.h>
 #include <xc.h>
+
+#define     BPS3_CN15   PORTDbits.RD6
+#define     BPS4_CN19   PORTDbits.RD13
+#define     BPS6_CN16   PORTDbits.RD7
+
+#define     LEDS    LATA
 
 /**
  * @brief Global init function/task 
@@ -34,7 +40,7 @@ void Initialiser(void);
  * @return   
  *
  */
- 
+void mainTask(void);
  
  /**
  * @brief  
@@ -57,7 +63,7 @@ void Initialiser(void);
  
 
 
-#endif
+#endif  /* __LIB_MCU07_H__  */
 
 
 
